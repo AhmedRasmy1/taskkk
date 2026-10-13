@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:taskkk/core/di/di.dart';
 import 'package:taskkk/firebase_options.dart';
-import 'package:taskkk/core/resources/color_manager.dart';
+import 'package:taskkk/core/routes/routes_manager.dart';
+import 'package:taskkk/core/theme/app_theme.dart';
 import 'package:taskkk/core/utils/cashed_data_shared_preferences.dart';
 import 'package:taskkk/core/utils/my_bloc_observer.dart';
-import 'package:taskkk/features/splash/presentation/splash_screen.dart';
 
 Future<void> main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -35,17 +35,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'taskkk',
-      theme: ThemeData(
-        scaffoldBackgroundColor: ColorManager.background,
-        colorScheme: const ColorScheme.light(
-          primary: ColorManager.primary,
-          onPrimary: ColorManager.white,
-          error: ColorManager.error,
-          surface: ColorManager.background,
-          onSurface: ColorManager.black,
-        ),
-      ),
-      home: const SplashScreen(),
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.light,
+      initialRoute: Routes.splash,
+      onGenerateRoute: RouteGenerator.onGenerateRoute,
     );
   }
 }
